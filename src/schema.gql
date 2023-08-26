@@ -1,0 +1,167 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Address {
+  address_id: Int!
+  city: String!
+  country: String!
+  district: String!
+  lat: String
+  lng: String
+  postal_code: String!
+  province: String!
+  street_address: String!
+}
+
+type Condo {
+  address: Address!
+  condo_id: Int!
+  condo_name: String!
+  filiales: [Filial!]!
+}
+
+input CreateAddressInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateCondoInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateFilialInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateRoleInput {
+  role_name: String!
+}
+
+input CreateUserInput {
+  email: String!
+  last_name: String!
+  name: String!
+  password: String!
+  phone_number: String!
+  roles: [ValidRolesEnum!]!
+  user_status: TypesOfUserStatus
+}
+
+type Filial {
+  condo: Condo!
+  filial_id: Int!
+  filial_number: String!
+  user: User!
+}
+
+type Mutation {
+  createAddress(createAddressInput: CreateAddressInput!): Address!
+  createCondo(createCondoInput: CreateCondoInput!): Condo!
+  createFiliale(createFilialeInput: CreateFilialInput!): Filial!
+  createRole(createRoleInput: CreateRoleInput!): Role!
+  createUser(createUserInput: CreateUserInput!): User!
+
+  """Executes the construction of the test data"""
+  executeSeed: Boolean!
+  removeAddress(id: Int!): Address!
+  removeCondo(id: Int!): Condo!
+  removeFiliale(id: Int!): Filial!
+  removeUser(id: Int!): User!
+  updateAddress(updateAddressInput: UpdateAddressInput!): Address!
+  updateCondo(updateCondoInput: UpdateCondoInput!): Condo!
+  updateFiliale(updateFilialeInput: UpdateFilialInput!): Filial!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+  address(id: Int!): Address!
+  addresses: [Address!]!
+  condo(id: Int!): Condo!
+  condos: [Condo!]!
+  filiale(id: Int!): Filial!
+  filiales: [Filial!]!
+  users(limit: Float = 10, offset: Float = 0, roles: [ValidRolesEnum!] = []): [User!]!
+}
+
+type Role {
+  role_id: Int!
+  role_name: String!
+}
+
+"""Tipos de estado de usuario"""
+enum TypesOfUserStatus {
+  """Activo"""
+  ACTIVE
+
+  """Bloqueado"""
+  BLOCKED
+
+  """Eliminado"""
+  DELETED
+
+  """Expirado"""
+  EXPIRED
+
+  """Inactivo"""
+  INACTIVE
+}
+
+input UpdateAddressInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateCondoInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateFilialInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateUserInput {
+  email: String
+  id: Int!
+  last_name: String
+  name: String
+  password: String
+  phone_number: String
+  roles: [ValidRolesEnum!]
+  user_status: TypesOfUserStatus
+}
+
+"""User's object type"""
+type User {
+  email: String!
+  filiales: [Filial!]!
+  last_name: String!
+  name: String!
+  phone_number: String!
+  roles: [Role!]!
+  user_id: Int!
+  user_status: UserStatus!
+}
+
+type UserStatus {
+  description: String!
+}
+
+"""Roles de usuario válidos"""
+enum ValidRolesEnum {
+  """ADD DESCRIPTION HERE"""
+  ADMIN
+
+  """ADD DESCRIPTION HERE"""
+  SUPER_ADMIN
+
+  """ADD DESCRIPTION HERE"""
+  USER
+}
